@@ -1,6 +1,3 @@
-/controller/
-/impostosFederais/
-/interfaces/
-/model/
-/view/
-/servicos/
+/federalTax/
+/cityTax/
+/stateTax/
