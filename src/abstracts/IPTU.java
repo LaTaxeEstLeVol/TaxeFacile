@@ -13,11 +13,11 @@ public abstract class IPTU extends Tax {
 		return 0;
 	}
 
-	public double calcule(IPTU iptu, Tax tax) {
+	public double calcule(IPTU iptu) {
 		if (isHabitable(iptu)) {
-			return new IPTUHabitleStrategy().calculeIPTU(iptu, tax);
+			return new IPTUHabitleStrategy().calculeIPTU(iptu);
 		} else {
-			return new IPTUHabitleStrategy().calculeIPTU(iptu, tax);
+			return new IPTUHabitleStrategy().calculeIPTU(iptu);
 		}
 	}
 
@@ -30,7 +30,7 @@ public abstract class IPTU extends Tax {
 
 	abstract public double calculeVenalPrice(IPTU iptu);
 
-	abstract public double calculeIPTU(IPTU iptu, Tax tax);
+	abstract public double calculeIPTU(IPTU iptu);
 
 	public boolean isHabitable() {
 		return habitable;
