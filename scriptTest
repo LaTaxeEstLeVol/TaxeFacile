@@ -1,0 +1,14 @@
+INSERT INTO state (name)
+VALUES ("Acre"),
+	   ("Alagoas"),
+       ("Amapa"),
+       ("Amazonas"),
+       ("Bahia"),
+       ("Ceara"),
+       ("Distrio Federal"),
+       ("Espirito Santo"),
+       ("Goias"),
+       ("Maranhao"),
+       ("Mato Grosso");
+
+select * from state;
