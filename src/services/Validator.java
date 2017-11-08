@@ -4,14 +4,14 @@ import javax.swing.JOptionPane;
 
 public class Validator {
 	
-	public boolean validateProfit(String value) {
+	public boolean validateProfit(String value,String trimester) {
 		
 		double finalValue = 0.0;
 		boolean valid = true;
 		
 		try {
 			if(value.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Insira o valor do trimestral");
+				JOptionPane.showMessageDialog(null, "Insira o valor trimestral " + trimester);
 				valid = false;
 			}
 			finalValue = Double.parseDouble(value);
