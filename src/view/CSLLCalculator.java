@@ -11,6 +11,7 @@ import javax.swing.event.ListSelectionListener;
 
 import abstracts.CSLL;
 import csll.CSLLProfitReal;
+import csll.CSLLProfixPresumed;
 import services.Validator;
 
 import javax.swing.GroupLayout;
@@ -252,8 +253,10 @@ public class CSLLCalculator extends JFrame {
 			public void valueChanged(ListSelectionEvent e) {
 				if (listTypeRegiment.getSelectedValue().equals("Lucro Real")) {
 					setProfitRealText(true);
+					cleanText();
 				} else {
 					setProfitRealText(true);
+					cleanText();
 				}
 			}
 		});
@@ -301,10 +304,8 @@ public class CSLLCalculator extends JFrame {
 					boolean fourth = validator.validateProfit(fourthTrimestre.getText(),"Quarto Trimestre");
 
 					if ((first && second && third && fourth) == true) {
-						/*
-						 * ta errado o de baixo, tem que fazer com a outra porcentagem, pois é o presumido
-						 */
-						CSLL csll = new CSLLProfitReal();
+						
+						CSLL csll = new CSLLProfixPresumed();
 
 						csll.setFirstTrimester(Double.parseDouble(firstTrimester.getText()));
 						csll.setSecondTrimester(Double.parseDouble(secondTrimester.getText()));
@@ -354,5 +355,17 @@ public class CSLLCalculator extends JFrame {
 			btnCalcular.setEnabled(true);
 		}
 		return state;
+	}
+	
+	private void cleanText() {
+		
+		firstTrimester.setText("");
+		secondTrimester.setText("");
+		thirdTrimester.setText("");
+		fourthTrimestre.setText("");
+		totalFirstTrimester.setText("");
+		totalSecondTrimester.setText("");
+		totalThirdTrimester.setText("");
+		totalFourthTrimester.setText("");
 	}
 }

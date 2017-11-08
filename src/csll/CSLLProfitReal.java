@@ -21,33 +21,25 @@ public class CSLLProfitReal extends CSLL {
 
 	@Override
 	public double firstTrimester(CSLL csll) {
-		
-		double aliquot = 9.0/100.0;
-		csll.setAliquot(aliquot);
+
 		return csll.getFirstTrimester() * csll.getAliquot();
 	}
 
 	@Override
 	public double secondTrimester(CSLL csll) {
-		
-		double aliquot = 9.0/100.0;
-		csll.setAliquot(aliquot);
+
 		return csll.getSecondTrimester() * csll.getAliquot();
 	}
 
 	@Override
 	public double thirdTrimester(CSLL csll) {
-		
-		double aliquot = 9.0/100.0;
-		csll.setAliquot(aliquot);
+
 		return csll.getThirdTrimester() * csll.getAliquot();
 	}
 
 	@Override
 	public double fourthTrimester(CSLL csll) {
-		
-		double aliquot = 9.0/100.0;
-		csll.setAliquot(aliquot);
+
 		return csll.getFourthTrimester() * csll.getAliquot();
 	}
 }
