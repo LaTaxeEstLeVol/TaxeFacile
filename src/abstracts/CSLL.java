@@ -8,6 +8,15 @@ public abstract class CSLL extends Tax {
 	private double firstTrimester = 0.0;
 	private double secondTrimester = 0.0;
 	private double thirdTrimester = 0.0;
+	private double fourthTrimester = 0.0;
+
+	public double getFourthTrimester() {
+		return fourthTrimester;
+	}
+
+	public void setFourthTrimester(double fourthTrimester) {
+		this.fourthTrimester = fourthTrimester;
+	}
 
 	public double getFirstTrimester() {
 		return firstTrimester;
@@ -46,20 +55,25 @@ public abstract class CSLL extends Tax {
 
 		return 0;
 	}
-	
+
 	public double calcule(CSLL csll) {
-		if(typeRegiment(csll)) {
+		if (typeRegiment(csll)) {
 			return new CSLLProfitReal().calcule();
 		} else {
 			return 0;
 		}
 	}
-	
+
 	private boolean typeRegiment(CSLL csll) {
-		if(csll.getTypeRegiment().equals("Lucro Real")) {
+		if (csll.getTypeRegiment().equals("Lucro Real")) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
+	public abstract double firstTrimester(CSLL csll);
+	public abstract double secondTrimester(CSLL csll);
+	public abstract double thirdTrimester(CSLL csll);
+	public abstract double fourthTrimester(CSLL csll);
 }
