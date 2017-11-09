@@ -15,4 +15,11 @@ public abstract class Tax implements Calculable {
 		this.aliquot = aliquot;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
 }

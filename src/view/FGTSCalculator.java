@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,6 +33,7 @@ public class FGTSCalculator extends JFrame {
 	private JPanel panel;
 	private JLabel lblGrossSalaryText;
 	private JButton btnCalcule;
+	private JButton btnClear;
 
 	public static void main(String[] args) {
 		
@@ -57,6 +59,7 @@ public class FGTSCalculator extends JFrame {
 		setContentPane(contentPane);
 		
 		panel = new JPanel();
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -74,50 +77,60 @@ public class FGTSCalculator extends JFrame {
 		);
 		
 		lblGrossSalaryText = new JLabel("Salário Bruto");
-		
 		grossSalaryText = new JTextField();
-		grossSalaryText.setColumns(10);
-		
 		lblMonthWorked = new JLabel("Meses Trabalhados");
-		
 		monthWorkedText = new JTextField();
-		monthWorkedText.setColumns(10);
-		
 		lblFGTSAccumulated = new JLabel("Saldo do FGTS Acumulado");
-		
 		fgtsAccumulatedText = new JTextField();
+		lblDepositedAmount = new JLabel("Valor Depositado Mensal");
+		depositedAmountText = new JTextField();
+		btnCalcule = new JButton("Calcular");
+		btnClear = new JButton("Limpar");
+		
+		lblGrossSalaryText.setFont(new Font("Arial", Font.PLAIN, 14));
+		grossSalaryText.setFont(new Font("Arial", Font.PLAIN, 12));
+		grossSalaryText.setColumns(10);
+		lblMonthWorked.setFont(new Font("Arial", Font.PLAIN, 14));
+		monthWorkedText.setFont(new Font("Arial", Font.PLAIN, 12));
+		monthWorkedText.setColumns(10);
+		lblFGTSAccumulated.setFont(new Font("Arial", Font.PLAIN, 14));
+		fgtsAccumulatedText.setFont(new Font("Arial", Font.PLAIN, 12));
 		fgtsAccumulatedText.setEnabled(false);
 		fgtsAccumulatedText.setColumns(10);
-		
-		lblDepositedAmount = new JLabel("Valor Depositado Mensal");
-		
-		depositedAmountText = new JTextField();
+		lblDepositedAmount.setFont(new Font("Arial", Font.PLAIN, 14));
+		depositedAmountText.setFont(new Font("Arial", Font.PLAIN, 12));
 		depositedAmountText.setEnabled(false);
 		depositedAmountText.setColumns(10);
+		btnCalcule.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnClear.setFont(new Font("Arial", Font.PLAIN, 14));
 		
-		btnCalcule = new JButton("Calcular");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblGrossSalaryText)
 								.addComponent(grossSalaryText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblMonthWorked)
-								.addComponent(monthWorkedText, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+								.addComponent(monthWorkedText, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(41)
+							.addComponent(btnClear)))
+					.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(depositedAmountText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblDepositedAmount)
 								.addComponent(fgtsAccumulatedText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblFGTSAccumulated))
 							.addContainerGap())
-						.addGroup(gl_panel.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 							.addComponent(btnCalcule)
-							.addGap(155))))
+							.addGap(40))))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -139,7 +152,9 @@ public class FGTSCalculator extends JFrame {
 						.addComponent(monthWorkedText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(depositedAmountText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-					.addComponent(btnCalcule)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnClear)
+						.addComponent(btnCalcule))
 					.addGap(40))
 		);
 		panel.setLayout(gl_panel);
@@ -170,5 +185,20 @@ public class FGTSCalculator extends JFrame {
 				}
 			}
 		});
+		
+		btnClear.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				clearText();
+			}
+		});
+	}
+	
+	private void clearText() {
+		
+		grossSalaryText.setText("");
+		monthWorkedText.setText("");
 	}
 }

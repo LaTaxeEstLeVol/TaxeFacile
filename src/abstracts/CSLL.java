@@ -58,6 +58,7 @@ public abstract class CSLL extends Tax {
 	}
 
 	public double calcule(CSLL csll) {
+		
 		if (typeRegiment(csll)) {
 			return new CSLLProfitReal().calcule(csll);
 		} else {

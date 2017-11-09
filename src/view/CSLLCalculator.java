@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -49,10 +50,11 @@ public class CSLLCalculator extends JFrame {
 	private JLabel lblCsllSecondTrimester;
 	private JLabel lblCsllThirdTrimester;
 	private JLabel lblFirstTrimester;
-	private JLabel lblSecondTrimester; 
+	private JLabel lblSecondTrimester;
 	private JLabel lblThirdTrimester;
 	private JLabel lblfourthTrimestre;
 	private JLabel lblQualOTipo;
+	private JLabel lblCsllQuartoTrimestre;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -69,7 +71,7 @@ public class CSLLCalculator extends JFrame {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public CSLLCalculator() {
-		
+
 		super("Calculadora da CSLL");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 425);
@@ -78,10 +80,62 @@ public class CSLLCalculator extends JFrame {
 		setContentPane(contentPane);
 
 		panel = new JPanel();
-
 		panelReal = new JPanel();
-
 		panelTotal = new JPanel();
+		lblTotalAPagar = new JLabel("Total a Pagar no Ano");
+		btnCalcular = new JButton("Calcular");
+		lblCsllFirstTrimester = new JLabel("CSLL Primeiro Trimestre");
+		totalText = new JTextField();
+		totalFirstTrimester = new JTextField();
+		lblCsllSecondTrimester = new JLabel("CSLL Segundo Trimestre");
+		totalSecondTrimester = new JTextField();
+		lblCsllThirdTrimester = new JLabel("CSLL Terceiro Trimestre");
+		totalThirdTrimester = new JTextField();
+		lblCsllQuartoTrimestre = new JLabel("CSLL Quarto Trimestre");
+		totalFourthTrimester = new JTextField();
+		lblFirstTrimester = new JLabel("Lucro Primeiro Trimestre");
+		firstTrimester = new JTextField();
+		lblSecondTrimester = new JLabel("Lucro Segundo Trimestre");
+		secondTrimester = new JTextField();
+		lblThirdTrimester = new JLabel("Lucro Terceiro Trimestre");
+		thirdTrimester = new JTextField();
+		lblfourthTrimestre = new JLabel("Lucro Quarto Trimestre");
+		fourthTrimestre = new JTextField();
+		lblQualOTipo = new JLabel("Qual o tipo de regimento?");
+		listTypeRegiment = new JList(typeRegiment);
+		
+		lblTotalAPagar.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCsllFirstTrimester.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCsllSecondTrimester.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCsllThirdTrimester.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblCsllQuartoTrimestre.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblFirstTrimester.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblSecondTrimester.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblThirdTrimester.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblfourthTrimestre.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblQualOTipo.setFont(new Font("Arial", Font.PLAIN, 14));
+		listTypeRegiment.setFont(new Font("Arial", Font.PLAIN, 14));
+		
+		totalText.setFont(new Font("Arial", Font.PLAIN, 10));
+		totalText.setColumns(10);
+		firstTrimester.setFont(new Font("Arial", Font.PLAIN, 10));
+		firstTrimester.setColumns(10);
+		secondTrimester.setFont(new Font("Arial", Font.PLAIN, 10));
+		secondTrimester.setColumns(10);
+		thirdTrimester.setFont(new Font("Arial", Font.PLAIN, 10));
+		thirdTrimester.setColumns(10);
+		totalFirstTrimester.setFont(new Font("Arial", Font.PLAIN, 10));
+		totalFirstTrimester.setColumns(10);
+		totalSecondTrimester.setFont(new Font("Arial", Font.PLAIN, 10));
+		totalSecondTrimester.setColumns(10);
+		totalThirdTrimester.setFont(new Font("Arial", Font.PLAIN, 10));
+		totalThirdTrimester.setColumns(10);
+		totalFourthTrimester.setFont(new Font("Arial", Font.PLAIN, 10));
+		totalFourthTrimester.setColumns(10);
+		fourthTrimestre.setFont(new Font("Arial", Font.PLAIN, 10));
+		fourthTrimestre.setColumns(10);
+		btnCalcular.setFont(new Font("Arial", Font.PLAIN, 14));
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
 				.createSequentialGroup().addContainerGap()
@@ -102,33 +156,7 @@ public class CSLLCalculator extends JFrame {
 												GroupLayout.PREFERRED_SIZE)
 										.addContainerGap())
 								.addComponent(panelTotal, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))));
-
-		lblTotalAPagar = new JLabel("Total a Pagar no Ano");
-
-		totalText = new JTextField();
-		totalText.setColumns(10);
-
-		btnCalcular = new JButton("Calcular");
-
-		lblCsllFirstTrimester = new JLabel("CSLL Primeiro Trimestre");
-
-		totalFirstTrimester = new JTextField();
-		totalFirstTrimester.setColumns(10);
-
-		lblCsllSecondTrimester = new JLabel("CSLL Segundo Trimestre");
-
-		totalSecondTrimester = new JTextField();
-		totalSecondTrimester.setColumns(10);
-
-		lblCsllThirdTrimester = new JLabel("CSLL Terceiro Trimestre");
-
-		totalThirdTrimester = new JTextField();
-		totalThirdTrimester.setColumns(10);
-
-		JLabel lblCsllQuartoTrimestre = new JLabel("CSLL Quarto Trimestre");
-
-		totalFourthTrimester = new JTextField();
-		totalFourthTrimester.setColumns(10);
+		
 		GroupLayout gl_panelTotal = new GroupLayout(panelTotal);
 		gl_panelTotal.setHorizontalGroup(gl_panelTotal.createParallelGroup(Alignment.LEADING).addGroup(gl_panelTotal
 				.createSequentialGroup().addContainerGap()
@@ -174,25 +202,7 @@ public class CSLLCalculator extends JFrame {
 						.addContainerGap(27, Short.MAX_VALUE)));
 		panelTotal.setLayout(gl_panelTotal);
 
-		lblFirstTrimester = new JLabel("Lucro Primeiro Trimestre");
-
-		firstTrimester = new JTextField();
-		firstTrimester.setColumns(10);
-
-		lblSecondTrimester = new JLabel("Lucro Segundo Trimestre");
-
-		secondTrimester = new JTextField();
-		secondTrimester.setColumns(10);
-
-		lblThirdTrimester = new JLabel("Lucro Terceiro Trimestre");
-
-		thirdTrimester = new JTextField();
-		thirdTrimester.setColumns(10);
-
-		lblfourthTrimestre = new JLabel("Lucro Quarto Trimestre");
-
-		fourthTrimestre = new JTextField();
-		fourthTrimestre.setColumns(10);
+		
 		GroupLayout gl_panelReal = new GroupLayout(panelReal);
 		gl_panelReal.setHorizontalGroup(gl_panelReal.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelReal.createSequentialGroup().addContainerGap()
@@ -229,9 +239,6 @@ public class CSLLCalculator extends JFrame {
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		panelReal.setLayout(gl_panelReal);
 
-		lblQualOTipo = new JLabel("Qual o tipo de regimento?");
-
-		listTypeRegiment = new JList(typeRegiment);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
 				.createSequentialGroup().addContainerGap()
@@ -252,10 +259,11 @@ public class CSLLCalculator extends JFrame {
 
 		setProfitRealText(false);
 		btnCalcular.setEnabled(false);
-		
+
 		listTypeRegiment.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
+				
 				if (listTypeRegiment.getSelectedValue().equals("Lucro Real")) {
 					setProfitRealText(true);
 					cleanText();
@@ -269,19 +277,20 @@ public class CSLLCalculator extends JFrame {
 		btnCalcular.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				if (listTypeRegiment.getSelectedValue().equals("Lucro Real")) {
 
 					Validator validator = new Validator();
 
-					boolean first = validator.validateProfit(firstTrimester.getText(),"Primeiro Trimestre");
-					boolean second = validator.validateProfit(secondTrimester.getText(),"Segundo Trimestre");
-					boolean third = validator.validateProfit(thirdTrimester.getText(),"Terceiro Trimestre");
-					boolean fourth = validator.validateProfit(fourthTrimestre.getText(),"Quarto Trimestre");
+					boolean first = validator.validateProfit(firstTrimester.getText(), "Primeiro Trimestre");
+					boolean second = validator.validateProfit(secondTrimester.getText(), "Segundo Trimestre");
+					boolean third = validator.validateProfit(thirdTrimester.getText(), "Terceiro Trimestre");
+					boolean fourth = validator.validateProfit(fourthTrimestre.getText(), "Quarto Trimestre");
 
 					if ((first && second && third && fourth) == true) {
-						
+
 						CSLL csll = new CSLLProfitReal();
-						
+
 						csll.setTypeRegiment("Lucro Real");
 						csll.setFirstTrimester(Double.parseDouble(firstTrimester.getText()));
 						csll.setSecondTrimester(Double.parseDouble(secondTrimester.getText()));
@@ -301,18 +310,18 @@ public class CSLLCalculator extends JFrame {
 						totalText.setText("RS " + finalValue);
 					}
 				} else {
-					
+
 					Validator validator = new Validator();
 
-					boolean first = validator.validateProfit(firstTrimester.getText(),"Primeiro Trimestre");
-					boolean second = validator.validateProfit(secondTrimester.getText(),"Segundo Trimestre");
-					boolean third = validator.validateProfit(thirdTrimester.getText(),"Terceiro Trimestre");
-					boolean fourth = validator.validateProfit(fourthTrimestre.getText(),"Quarto Trimestre");
+					boolean first = validator.validateProfit(firstTrimester.getText(), "Primeiro Trimestre");
+					boolean second = validator.validateProfit(secondTrimester.getText(), "Segundo Trimestre");
+					boolean third = validator.validateProfit(thirdTrimester.getText(), "Terceiro Trimestre");
+					boolean fourth = validator.validateProfit(fourthTrimestre.getText(), "Quarto Trimestre");
 
 					if ((first && second && third && fourth) == true) {
-						
+
 						CSLL csll = new CSLLProfixPresumed();
-						
+
 						csll.setTypeRegiment("Lucro Presumido");
 						csll.setFirstTrimester(Double.parseDouble(firstTrimester.getText()));
 						csll.setSecondTrimester(Double.parseDouble(secondTrimester.getText()));
@@ -337,8 +346,8 @@ public class CSLLCalculator extends JFrame {
 	}
 
 	private boolean setProfitRealText(boolean state) {
-		
-		if(state == true) {
+
+		if (state == true) {
 			firstTrimester.setEnabled(true);
 			secondTrimester.setEnabled(true);
 			thirdTrimester.setEnabled(true);
@@ -363,9 +372,9 @@ public class CSLLCalculator extends JFrame {
 		}
 		return state;
 	}
-	
+
 	private void cleanText() {
-		
+
 		firstTrimester.setText("");
 		secondTrimester.setText("");
 		thirdTrimester.setText("");
