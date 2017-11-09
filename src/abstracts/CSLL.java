@@ -1,6 +1,7 @@
 package abstracts;
 
 import csll.CSLLProfitReal;
+import csll.CSLLProfixPresumed;
 
 public abstract class CSLL extends Tax {
 
@@ -58,9 +59,9 @@ public abstract class CSLL extends Tax {
 
 	public double calcule(CSLL csll) {
 		if (typeRegiment(csll)) {
-			return new CSLLProfitReal().calcule();
+			return new CSLLProfitReal().calcule(csll);
 		} else {
-			return 0;
+			return new CSLLProfixPresumed().calcule(csll);
 		}
 	}
 

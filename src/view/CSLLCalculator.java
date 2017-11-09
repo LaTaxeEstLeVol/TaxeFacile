@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 
 public class CSLLCalculator extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String[] typeRegiment = { "Lucro Real", "Lucro Presumido" };
 	private JTextField firstTrimester;
@@ -38,7 +39,7 @@ public class CSLLCalculator extends JFrame {
 	private JTextField totalSecondTrimester;
 	private JTextField totalThirdTrimester;
 	private JTextField totalFourthTrimester;
-	private JList listTypeRegiment;
+	private JList<?> listTypeRegiment;
 	private JPanel panel;
 	private JPanel panelReal;
 	private JPanel panelTotal;
@@ -66,7 +67,10 @@ public class CSLLCalculator extends JFrame {
 		});
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public CSLLCalculator() {
+		
+		super("Calculadora da CSLL");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 425);
 		contentPane = new JPanel();
@@ -248,6 +252,7 @@ public class CSLLCalculator extends JFrame {
 
 		setProfitRealText(false);
 		btnCalcular.setEnabled(false);
+		
 		listTypeRegiment.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -276,7 +281,8 @@ public class CSLLCalculator extends JFrame {
 					if ((first && second && third && fourth) == true) {
 						
 						CSLL csll = new CSLLProfitReal();
-
+						
+						csll.setTypeRegiment("Lucro Real");
 						csll.setFirstTrimester(Double.parseDouble(firstTrimester.getText()));
 						csll.setSecondTrimester(Double.parseDouble(secondTrimester.getText()));
 						csll.setThirdTrimester(Double.parseDouble(thirdTrimester.getText()));
@@ -306,7 +312,8 @@ public class CSLLCalculator extends JFrame {
 					if ((first && second && third && fourth) == true) {
 						
 						CSLL csll = new CSLLProfixPresumed();
-
+						
+						csll.setTypeRegiment("Lucro Presumido");
 						csll.setFirstTrimester(Double.parseDouble(firstTrimester.getText()));
 						csll.setSecondTrimester(Double.parseDouble(secondTrimester.getText()));
 						csll.setThirdTrimester(Double.parseDouble(thirdTrimester.getText()));
