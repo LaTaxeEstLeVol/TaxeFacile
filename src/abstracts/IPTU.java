@@ -7,31 +7,7 @@ public abstract class IPTU extends Tax {
 	private boolean habitable;
 	private double squareMeterImmobile;
 	private double squareMeterRegionPrice;
-
-	@Override
-	public double calcule() {
-		return 0;
-	}
-
-	public double calcule(IPTU iptu, Tax tax) {
-		if (isHabitable(iptu)) {
-			return new IPTUHabitleStrategy().calculeIPTU(iptu, tax);
-		} else {
-			return new IPTUHabitleStrategy().calculeIPTU(iptu, tax);
-		}
-	}
-
-	private boolean isHabitable(IPTU iptu) {
-		if (iptu.habitable)
-			return true;
-		else
-			return false;
-	}
-
-	abstract public double calculeVenalPrice(IPTU iptu);
-
-	abstract public double calculeIPTU(IPTU iptu, Tax tax);
-
+	
 	public boolean isHabitable() {
 		return habitable;
 	}
@@ -56,4 +32,26 @@ public abstract class IPTU extends Tax {
 		this.squareMeterRegionPrice = squareMeterRegionPrice;
 	}
 
+	@Override
+	public double calcule(Tax tax) {
+		
+		IPTU iptu = (IPTU) tax;
+		
+		if (isHabitable(iptu)) {
+			return new IPTUHabitleStrategy().calculeIPTU(iptu, tax);
+		} else {
+			return new IPTUHabitleStrategy().calculeIPTU(iptu, tax);
+		}
+	}
+
+	private boolean isHabitable(IPTU iptu) {
+
+		if (iptu.habitable)
+			return true;
+		else
+			return false;
+	}
+
+	abstract public double calculeVenalPrice(IPTU iptu);
+	abstract public double calculeIPTU(IPTU iptu, Tax tax);
 }

@@ -52,14 +52,11 @@ public abstract class CSLL extends Tax {
 	}
 
 	@Override
-	public double calcule() {
-
-		return 0;
-	}
-
-	public double calcule(CSLL csll) {
+	public double calcule(Tax tax) {
 		
-		if (typeRegiment(csll)) {
+		CSLL csll = (CSLL) tax;
+		
+		if (typeRegiment(csll) == true) {
 			return new CSLLProfitReal().calcule(csll);
 		} else {
 			return new CSLLProfixPresumed().calcule(csll);
@@ -67,6 +64,7 @@ public abstract class CSLL extends Tax {
 	}
 
 	private boolean typeRegiment(CSLL csll) {
+		
 		if (csll.getTypeRegiment().equals("Lucro Real")) {
 			return true;
 		} else {
@@ -78,4 +76,5 @@ public abstract class CSLL extends Tax {
 	public abstract double secondTrimester(CSLL csll);
 	public abstract double thirdTrimester(CSLL csll);
 	public abstract double fourthTrimester(CSLL csll);
+	public abstract double calculaCSLL(CSLL csll);
 }

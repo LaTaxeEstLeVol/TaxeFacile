@@ -40,12 +40,9 @@ public abstract class TemplateFGTS extends Tax {
 	}
 
 	@Override
-	public double calcule() {
-
-		return 0;
-	}
-	
-	public double calcule(TemplateFGTS fgts) {
+	public double calcule(Tax tax) {
+		
+		TemplateFGTS fgts = (TemplateFGTS) tax;
 		calculeDepositedAmount(fgts);
 		return calculeFgtsAccumulated(fgts);
 	}

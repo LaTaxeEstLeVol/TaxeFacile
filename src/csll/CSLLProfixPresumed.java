@@ -4,7 +4,8 @@ import abstracts.CSLL;
 
 public class CSLLProfixPresumed extends CSLL{
 
-	public double calcule(CSLL csll) {
+	@Override
+	public double calculaCSLL(CSLL csll) {
 		
 		double aliquot = 2.88/100.0;
 		csll.setAliquot(aliquot);
@@ -41,5 +42,5 @@ public class CSLLProfixPresumed extends CSLL{
 	public double fourthTrimester(CSLL csll) {
 
 		return csll.getFourthTrimester() * csll.getAliquot();
-	}
+	}	
 }

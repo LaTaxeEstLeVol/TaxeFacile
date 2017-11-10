@@ -117,20 +117,20 @@ public class FGTSCalculator extends JFrame {
 								.addComponent(lblMonthWorked)
 								.addComponent(monthWorkedText, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(41)
-							.addComponent(btnClear)))
-					.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+							.addGap(39)
+							.addComponent(btnCalcule)))
+					.addPreferredGap(ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(depositedAmountText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblDepositedAmount)
 								.addComponent(fgtsAccumulatedText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblFGTSAccumulated))
+								.addComponent(lblFGTSAccumulated)
+								.addComponent(lblDepositedAmount))
 							.addContainerGap())
 						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-							.addComponent(btnCalcule)
-							.addGap(40))))
+							.addComponent(btnClear)
+							.addGap(32))))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -151,11 +151,11 @@ public class FGTSCalculator extends JFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(monthWorkedText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(depositedAmountText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+					.addGap(59)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnClear)
-						.addComponent(btnCalcule))
-					.addGap(40))
+						.addComponent(btnCalcule)
+						.addComponent(btnClear))
+					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
@@ -200,5 +200,7 @@ public class FGTSCalculator extends JFrame {
 		
 		grossSalaryText.setText("");
 		monthWorkedText.setText("");
+		depositedAmountText.setText("");
+		fgtsAccumulatedText.setText("");
 	}
 }

@@ -4,7 +4,8 @@ import abstracts.CSLL;
 
 public class CSLLProfitReal extends CSLL {
 	
-	public double calcule(CSLL csll) {
+	@Override
+	public double calculaCSLL(CSLL csll) {
 		
 		double aliquot = 9.0/100.0;
 		csll.setAliquot(aliquot);
