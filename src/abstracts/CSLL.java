@@ -1,7 +1,7 @@
 package abstracts;
 
-import csll.CSLLProfitReal;
-import csll.CSLLProfixPresumed;
+import csll.CSLLProfitRealStrategy;
+import csll.CSLLProfixPresumedStrategy;
 
 public abstract class CSLL extends Tax {
 
@@ -57,9 +57,9 @@ public abstract class CSLL extends Tax {
 		CSLL csll = (CSLL) tax;
 		
 		if (typeRegiment(csll) == true) {
-			return new CSLLProfitReal().calcule(csll);
+			return new CSLLProfitRealStrategy().calculeCSLL(csll);
 		} else {
-			return new CSLLProfixPresumed().calcule(csll);
+			return new CSLLProfixPresumedStrategy().calculeCSLL(csll);
 		}
 	}
 
@@ -72,9 +72,9 @@ public abstract class CSLL extends Tax {
 		}
 	}
 	
-	public abstract double firstTrimester(CSLL csll);
-	public abstract double secondTrimester(CSLL csll);
-	public abstract double thirdTrimester(CSLL csll);
-	public abstract double fourthTrimester(CSLL csll);
-	public abstract double calculaCSLL(CSLL csll);
+	public abstract double calculeFirstTrimester(CSLL csll);
+	public abstract double calculeSecondTrimester(CSLL csll);
+	public abstract double calculeThirdTrimester(CSLL csll);
+	public abstract double calculeFourthTrimester(CSLL csll);
+	public abstract double calculeCSLL(CSLL csll);
 }

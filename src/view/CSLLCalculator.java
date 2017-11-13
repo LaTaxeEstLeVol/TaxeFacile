@@ -11,8 +11,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import abstracts.CSLL;
-import csll.CSLLProfitReal;
-import csll.CSLLProfixPresumed;
+import csll.CSLLProfitRealStrategy;
+import csll.CSLLProfixPresumedStrategy;
 import services.Validator;
 
 import javax.swing.GroupLayout;
@@ -289,7 +289,7 @@ public class CSLLCalculator extends JFrame {
 
 					if ((first && second && third && fourth) == true) {
 
-						CSLL csll = new CSLLProfitReal();
+						CSLL csll = new CSLLProfitRealStrategy();
 
 						csll.setTypeRegiment("Lucro Real");
 						csll.setFirstTrimester(Double.parseDouble(firstTrimester.getText()));
@@ -298,10 +298,10 @@ public class CSLLCalculator extends JFrame {
 						csll.setFourthTrimester(Double.parseDouble(fourthTrimestre.getText()));
 
 						String finalValue = String.valueOf(csll.calcule(csll));
-						String firstValue = String.valueOf(csll.firstTrimester(csll));
-						String secondValue = String.valueOf(csll.secondTrimester(csll));
-						String thirdValue = String.valueOf(csll.thirdTrimester(csll));
-						String fourthValue = String.valueOf(csll.fourthTrimester(csll));
+						String firstValue = String.valueOf(csll.calculeFirstTrimester(csll));
+						String secondValue = String.valueOf(csll.calculeSecondTrimester(csll));
+						String thirdValue = String.valueOf(csll.calculeThirdTrimester(csll));
+						String fourthValue = String.valueOf(csll.calculeFourthTrimester(csll));
 
 						totalFirstTrimester.setText("RS " + firstValue);
 						totalSecondTrimester.setText("RS " + secondValue);
@@ -320,7 +320,7 @@ public class CSLLCalculator extends JFrame {
 
 					if ((first && second && third && fourth) == true) {
 
-						CSLL csll = new CSLLProfixPresumed();
+						CSLL csll = new CSLLProfixPresumedStrategy();
 
 						csll.setTypeRegiment("Lucro Presumido");
 						csll.setFirstTrimester(Double.parseDouble(firstTrimester.getText()));
@@ -329,10 +329,10 @@ public class CSLLCalculator extends JFrame {
 						csll.setFourthTrimester(Double.parseDouble(fourthTrimestre.getText()));
 
 						String finalValue = String.valueOf(csll.calcule(csll));
-						String firstValue = String.valueOf(csll.firstTrimester(csll));
-						String secondValue = String.valueOf(csll.secondTrimester(csll));
-						String thirdValue = String.valueOf(csll.thirdTrimester(csll));
-						String fourthValue = String.valueOf(csll.fourthTrimester(csll));
+						String firstValue = String.valueOf(csll.calculeFirstTrimester(csll));
+						String secondValue = String.valueOf(csll.calculeSecondTrimester(csll));
+						String thirdValue = String.valueOf(csll.calculeThirdTrimester(csll));
+						String fourthValue = String.valueOf(csll.calculeFourthTrimester(csll));
 
 						totalFirstTrimester.setText("RS " + firstValue);
 						totalSecondTrimester.setText("RS " + secondValue);
