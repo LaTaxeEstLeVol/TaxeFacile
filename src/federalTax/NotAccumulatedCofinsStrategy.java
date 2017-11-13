@@ -1,12 +1,13 @@
 package federalTax;
 
 import abstracts.COFINS;
+import abstracts.Tax;
 import concrete.Income;
 
 public class NotAccumulatedCofinsStrategy extends COFINS {
 
 	@Override
-	public double calcule() {
+	public double calcule(Tax tax) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
