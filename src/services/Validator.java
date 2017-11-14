@@ -1,5 +1,7 @@
 package services;
 
+import java.text.DecimalFormat;
+
 import javax.swing.JOptionPane;
 
 public class Validator {
@@ -68,5 +70,13 @@ public class Validator {
 			valid = false;
 		}
 		return valid;
+	}
+	
+	public String format(double value) {
+		
+		String format = "#.##";
+		DecimalFormat decimalFormat = new DecimalFormat(format);
+		
+		return decimalFormat.format(value);
 	}
 }

@@ -12,7 +12,6 @@ import javax.swing.event.ListSelectionListener;
 
 import abstracts.CSLL;
 import csll.CSLLProfitRealStrategy;
-import csll.CSLLProfixPresumedStrategy;
 import services.Validator;
 
 import javax.swing.GroupLayout;
@@ -278,8 +277,9 @@ public class CSLLCalculator extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if (listTypeRegiment.getSelectedValue().equals("Lucro Real")) {
-
+				if (listTypeRegiment.getSelectedValue().equals("Lucro Real") || 
+					listTypeRegiment.getSelectedValue().equals("Lucro Presumido")) {
+	
 					Validator validator = new Validator();
 
 					boolean first = validator.validateProfit(firstTrimester.getText(), "Primeiro Trimestre");
@@ -290,18 +290,18 @@ public class CSLLCalculator extends JFrame {
 					if ((first && second && third && fourth) == true) {
 
 						CSLL csll = new CSLLProfitRealStrategy();
-
-						csll.setTypeRegiment("Lucro Real");
+						
+						csll.setTypeRegiment(listTypeRegiment.getSelectedValue().toString());
 						csll.setFirstTrimester(Double.parseDouble(firstTrimester.getText()));
 						csll.setSecondTrimester(Double.parseDouble(secondTrimester.getText()));
 						csll.setThirdTrimester(Double.parseDouble(thirdTrimester.getText()));
 						csll.setFourthTrimester(Double.parseDouble(fourthTrimestre.getText()));
 
-						String finalValue = String.valueOf(csll.calcule(csll));
-						String firstValue = String.valueOf(csll.calculeFirstTrimester(csll));
-						String secondValue = String.valueOf(csll.calculeSecondTrimester(csll));
-						String thirdValue = String.valueOf(csll.calculeThirdTrimester(csll));
-						String fourthValue = String.valueOf(csll.calculeFourthTrimester(csll));
+						String finalValue = String.valueOf(validator.format(csll.calcule(csll)));
+						String firstValue = String.valueOf(validator.format(csll.calculeFirstTrimester(csll)));
+						String secondValue = String.valueOf(validator.format(csll.calculeSecondTrimester(csll)));
+						String thirdValue = String.valueOf(validator.format(csll.calculeThirdTrimester(csll)));
+						String fourthValue = String.valueOf(validator.format(csll.calculeFourthTrimester(csll)));
 
 						totalFirstTrimester.setText("RS " + firstValue);
 						totalSecondTrimester.setText("RS " + secondValue);
@@ -311,35 +311,6 @@ public class CSLLCalculator extends JFrame {
 					}
 				} else {
 
-					Validator validator = new Validator();
-
-					boolean first = validator.validateProfit(firstTrimester.getText(), "Primeiro Trimestre");
-					boolean second = validator.validateProfit(secondTrimester.getText(), "Segundo Trimestre");
-					boolean third = validator.validateProfit(thirdTrimester.getText(), "Terceiro Trimestre");
-					boolean fourth = validator.validateProfit(fourthTrimestre.getText(), "Quarto Trimestre");
-
-					if ((first && second && third && fourth) == true) {
-
-						CSLL csll = new CSLLProfixPresumedStrategy();
-
-						csll.setTypeRegiment("Lucro Presumido");
-						csll.setFirstTrimester(Double.parseDouble(firstTrimester.getText()));
-						csll.setSecondTrimester(Double.parseDouble(secondTrimester.getText()));
-						csll.setThirdTrimester(Double.parseDouble(thirdTrimester.getText()));
-						csll.setFourthTrimester(Double.parseDouble(fourthTrimestre.getText()));
-
-						String finalValue = String.valueOf(csll.calcule(csll));
-						String firstValue = String.valueOf(csll.calculeFirstTrimester(csll));
-						String secondValue = String.valueOf(csll.calculeSecondTrimester(csll));
-						String thirdValue = String.valueOf(csll.calculeThirdTrimester(csll));
-						String fourthValue = String.valueOf(csll.calculeFourthTrimester(csll));
-
-						totalFirstTrimester.setText("RS " + firstValue);
-						totalSecondTrimester.setText("RS " + secondValue);
-						totalThirdTrimester.setText("RS " + thirdValue);
-						totalFourthTrimester.setText("RS " + fourthValue);
-						totalText.setText("RS " + finalValue);
-					}
 				}
 			}
 		});
@@ -383,5 +354,6 @@ public class CSLLCalculator extends JFrame {
 		totalSecondTrimester.setText("");
 		totalThirdTrimester.setText("");
 		totalFourthTrimester.setText("");
+		totalText.setText("");
 	}
 }
