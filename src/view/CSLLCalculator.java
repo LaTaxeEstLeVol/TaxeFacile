@@ -274,6 +274,7 @@ public class CSLLCalculator extends JFrame {
 		});
 
 		btnCalcular.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
@@ -307,7 +308,7 @@ public class CSLLCalculator extends JFrame {
 						totalSecondTrimester.setText("RS " + secondValue);
 						totalThirdTrimester.setText("RS " + thirdValue);
 						totalFourthTrimester.setText("RS " + fourthValue);
-						totalText.setText("RS " + finalValue);
+						totalText.setText("RS " + finalValue + " Reais");
 					}
 				} else {
 
