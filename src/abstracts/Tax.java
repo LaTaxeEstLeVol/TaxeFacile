@@ -2,8 +2,9 @@ package abstracts;
 
 public abstract class Tax {
 
-	private double aliquot;
-	private String state;
+	private int id = 0;
+	private double aliquot = 0.0;
+	private String state = "";
 
 	public double getAliquot() {
 		return aliquot;
@@ -20,6 +21,14 @@ public abstract class Tax {
 	public void setState(String state) {
 		this.state = state;
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int idTax) {
+		this.id = idTax;
+	}
+
 	public abstract double calcule(Tax tax);
 }
