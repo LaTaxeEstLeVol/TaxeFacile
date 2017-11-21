@@ -3,10 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-import fgts.FGTS;
+import icms.ICMS;
 
 public class ICMSDao {
 
@@ -33,30 +31,68 @@ public class ICMSDao {
 	 * por que ainda não foi feito o ICMS
 	 */
 	
-	/*public List<FGTS> listICMS() {
-
-		List<FGTS> list = new ArrayList<FGTS>();
-
+	public boolean getAliquotOrigin(ICMS icms) {
+				
+		boolean valid = true;
+		String queryOrigin = "SELECT * FROM ICMS WHERE stateOrigin = '" + icms.getStateOrigin() + "'" 
+						+ " AND stateDestiny = '" + icms.getStateDestiny() + "'";
+		
 		try {
+			
 			connectionSQL = ConnectionSQL.getConnection();
 			Statement statement = connectionSQL.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM ICMS");
-
-			while (resultSet.next()) {
-
-				FGTS fgts = new FGTS();
+			
+			ResultSet resultSet = statement.executeQuery(queryOrigin);
+			
+			if (resultSet.next()) {
+								
+				icms.setAliquot(resultSet.getDouble("aliquot"));
+				valid = true;
+			} else {
 				
-				fgts.setId(resultSet.getInt("idICMS"));
-				fgts.setState(resultSet.getString("state"));
-				fgts.setAliquot(resultSet.getDouble("aliquot"));
-
-				list.add(fgts);
+				icms.setAliquot(0.12);
+				valid = true;
 			}
+						
 			statement.close();
 			connectionSQL.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Erro misterioso");
+			valid = false;
 		}
-		return list;
-	}*/
+		return valid;
+	}
+	
+	public boolean getAliquotDestiny(ICMS icms) {
+		
+		boolean valid = true;
+		
+		String queryDestiny = "SELECT * FROM ICMS WHERE stateOrigin = '" + icms.getStateDestiny() + "'" 
+				+ " AND stateDestiny = '" + icms.getStateOrigin() + "'";
+		
+		try {
+			
+			connectionSQL = ConnectionSQL.getConnection();
+			Statement statement = connectionSQL.createStatement();
+			
+			ResultSet resultSet = statement.executeQuery(queryDestiny);
+			
+			if (resultSet.next()) {
+								
+				icms.setAliquot(resultSet.getDouble("aliquot"));
+				valid = true;
+			} else {
+				
+				icms.setAliquot(0.12);
+				valid = true;
+			}
+						
+			statement.close();
+			connectionSQL.close();
+		} catch (Exception e) {
+			System.out.println("Erro misterioso");
+			valid = false;
+		}
+		return valid;
+	}
 }

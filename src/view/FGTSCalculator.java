@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import abstracts.TemplateFGTS;
 import fgts.FGTS;
 import services.Validator;
 
@@ -172,7 +173,7 @@ public class FGTSCalculator extends JFrame {
 				
 				if((salary && months) == true) {
 					
-					FGTS fgts = new FGTS();
+					TemplateFGTS fgts = new FGTS();
 					
 					fgts.setGrossSalary(Double.parseDouble(grossSalaryText.getText()));
 					fgts.setMonthsWorked(Integer.parseInt(monthWorkedText.getText()));
