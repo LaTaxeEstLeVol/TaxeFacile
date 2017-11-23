@@ -1,6 +1,6 @@
-package fgts;
+package controller;
 
-import abstracts.TemplateFGTS;
+import model.TemplateFGTS;
 
 public class FGTS extends TemplateFGTS {
 

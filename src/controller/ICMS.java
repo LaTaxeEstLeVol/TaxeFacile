@@ -1,6 +1,6 @@
-package icms;
+package controller;
 
-import abstracts.TemplateICMS;
+import model.TemplateICMS;
 
 public class ICMS extends TemplateICMS {
 

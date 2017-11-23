@@ -13,8 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import controller.ICMS;
 import dao.ICMSDao;
-import icms.ICMS;
 import services.Validator;
 
 import javax.swing.GroupLayout;

@@ -10,8 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import abstracts.CSLL;
-import csll.CSLLProfitRealStrategy;
+import controller.CSLLProfitRealStrategy;
+import model.CSLL;
 import services.Validator;
 
 import javax.swing.GroupLayout;

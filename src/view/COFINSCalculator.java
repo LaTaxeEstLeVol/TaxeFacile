@@ -11,9 +11,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import abstracts.COFINS;
-import federalTax.COFINSProfitPresumedStrategy;
-import federalTax.COFINSProfitRealStrategy;
+import controller.COFINSProfitPresumedStrategy;
+import controller.COFINSProfitRealStrategy;
+import model.COFINS;
 import services.Validator;
 
 import javax.swing.GroupLayout;

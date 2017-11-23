@@ -1,6 +1,6 @@
-package csll;
+package controller;
 
-import abstracts.CSLL;
+import model.CSLL;
 
 public class CSLLProfitRealStrategy extends CSLL {
 	

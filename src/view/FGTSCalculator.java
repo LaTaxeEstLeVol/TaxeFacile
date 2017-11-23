@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import abstracts.TemplateFGTS;
-import fgts.FGTS;
+import controller.FGTS;
+import model.TemplateFGTS;
 import services.Validator;
 
 import javax.swing.GroupLayout;

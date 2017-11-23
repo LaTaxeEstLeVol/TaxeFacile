@@ -1,7 +1,7 @@
-package abstracts;
+package model;
 
+import controller.ICMS;
 import dao.ICMSDao;
-import icms.ICMS;
 
 public abstract class TemplateICMS extends Tax{
 
