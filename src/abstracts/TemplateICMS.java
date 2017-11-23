@@ -5,17 +5,17 @@ import icms.ICMS;
 
 public abstract class TemplateICMS extends Tax{
 
-	private int productValue = 0;
+	private double productValue = 0.0;
 	private String stateOrigin = "";
 	private String stateDestiny = "";
 	
 	protected ICMSDao icmsDao = new ICMSDao();
 	
-	public int getProductValue() {
+	public double getProductValue() {
 		return productValue;
 	}
 
-	public void setProductValue(int productValue) {
+	public void setProductValue(double productValue) {
 		this.productValue = productValue;
 	}
 

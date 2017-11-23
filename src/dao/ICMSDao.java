@@ -101,20 +101,14 @@ public class ICMSDao {
 			connectionSQL = ConnectionSQL.getConnection();
 			Statement statement = connectionSQL.createStatement();
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM ICMS GROUP BY stateOrigin");
-
-			System.out.println(resultSet.next());
-			int i =0;
 			
-			do  {
-
+			while(resultSet.next()) {
+				
 				ICMS icms = new ICMS();
 
 				icms.setStateOrigin(resultSet.getString("stateOrigin"));
-				
-				System.out.println(resultSet.next()+" "+ i);
-				i++;
 				listIcms.add(icms);
-			} while (resultSet.next());
+			}
 			resultSet.close();
 			statement.close();
 			connectionSQL.close();

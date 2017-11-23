@@ -27,20 +27,21 @@ import javax.swing.JButton;
 public class COFINSCalculator extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel contentPane = null;
 	private String[] typeRegiment = { "Lucro Real", "Lucro Presumido" };
-	private JList<?> typeRegimentList;
-	private JTextField salesMonthText;
-	private JTextField resalesText;
-	private JTextField totalToPay;
-	private JPanel panelTotal;
-	private JLabel lblsalesMonth;
-	private JLabel lblResales;
-	private GroupLayout gl_panel;
-	private JPanel panel;
-	private JLabel lblTotal;
-	private JButton btnCalcule;
-	private GroupLayout gl_panelTotal;
+	private JList<?> typeRegimentList = null;
+	private JTextField salesMonthText = null;
+	private JTextField resalesText = null;
+	private JTextField totalToPay = null;
+	private JPanel panelTotal = null;
+	private JLabel lblsalesMonth = null;
+	private JLabel lblResales = null;
+	private GroupLayout gl_panel = null;
+	private JPanel panel = null;
+	private JLabel lblTotal = null;
+	private JButton btnCalcule = null;
+	private GroupLayout gl_panelTotal = null;
+	private Validator validator = null;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -88,6 +89,8 @@ public class COFINSCalculator extends JFrame {
 		
 		salesMonthText.setColumns(10);		
 		resalesText.setColumns(10);
+		
+		validator = new Validator();
 		
 		panel = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -154,6 +157,7 @@ public class COFINSCalculator extends JFrame {
 		resalesText.setVisible(false);
 		totalToPay.setEnabled(false);
 		btnCalcule.setEnabled(false);
+		totalToPay.setEnabled(false);
 
 		typeRegimentList.addListSelectionListener(new ListSelectionListener() {
 
@@ -178,8 +182,6 @@ public class COFINSCalculator extends JFrame {
 
 				if (typeRegimentList.getSelectedValue().equals("Lucro Real")) {
 
-					Validator validator = new Validator();
-
 					boolean sales = validator.validateSalary(salesMonthText.getText());
 					boolean resales = validator.validateSalary(resalesText.getText());
 
@@ -196,8 +198,6 @@ public class COFINSCalculator extends JFrame {
 						totalToPay.setText("RS " + finalValue + " Reais");
 					}
 				} else {
-					
-					Validator validator = new Validator();
 
 					boolean sales = validator.validateSalary(salesMonthText.getText());
 					
@@ -210,7 +210,7 @@ public class COFINSCalculator extends JFrame {
 						
 						String finalValue = String.valueOf(validator.format(cofins.calcule(cofins)));
 						
-						totalToPay.setText("RS " + finalValue + " Reais");
+						totalToPay.setText("R$ " + finalValue + " Reais");
 					}
 				}
 			}
@@ -224,7 +224,7 @@ public class COFINSCalculator extends JFrame {
 			salesMonthText.setEnabled(true);
 			lblResales.setVisible(false);
 			resalesText.setVisible(false);
-			totalToPay.setEnabled(true);
+			totalToPay.setEnabled(false);
 			btnCalcule.setEnabled(true);
 		} else {
 
@@ -232,7 +232,7 @@ public class COFINSCalculator extends JFrame {
 			resalesText.setVisible(true);
 			salesMonthText.setEnabled(true);
 			resalesText.setEnabled(true);
-			totalToPay.setEnabled(true);
+			totalToPay.setEnabled(false);
 			btnCalcule.setEnabled(true);
 		}
 		return state;
