@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -65,9 +66,29 @@ public class COFINSCalculator extends JFrame {
 		setContentPane(contentPane);
 
 		typeRegimentList = new JList(typeRegiment);
-
+		lblsalesMonth = new JLabel("Vendas no mês");
+		lblResales = new JLabel("Compras pra Revendas");
 		panelTotal = new JPanel();
-
+		salesMonthText = new JTextField();
+		resalesText = new JTextField();
+		lblTotal = new JLabel("Total a Pagar ");
+		btnCalcule = new JButton("Calcular");
+		totalToPay = new JTextField();
+		gl_panelTotal = new GroupLayout(panelTotal);
+		
+		typeRegimentList.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblsalesMonth.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblResales.setFont(new Font("Arial", Font.PLAIN, 14));
+		salesMonthText.setFont(new Font("Arial", Font.PLAIN, 14));
+		salesMonthText.setFont(new Font("Arial", Font.PLAIN, 14));
+		resalesText.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblTotal.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnCalcule.setFont(new Font("Arial", Font.PLAIN, 14));
+		totalToPay.setFont(new Font("Arial", Font.PLAIN, 14));
+		
+		salesMonthText.setColumns(10);		
+		resalesText.setColumns(10);
+		
 		panel = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
@@ -88,16 +109,8 @@ public class COFINSCalculator extends JFrame {
 								.addComponent(panel, Alignment.LEADING, 0, 0, Short.MAX_VALUE))
 						.addGap(32)));
 
-		lblsalesMonth = new JLabel("Vendas no mês");
-
-		salesMonthText = new JTextField();
-		salesMonthText.setColumns(10);
-
-		lblResales = new JLabel("Compras pra Revendas");
-
-		resalesText = new JTextField();
-		resalesText.setColumns(10);
 		gl_panel = new GroupLayout(panel);
+
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup().addContainerGap()
 						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblsalesMonth)
@@ -117,12 +130,9 @@ public class COFINSCalculator extends JFrame {
 						.addContainerGap(102, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
 
-		lblTotal = new JLabel("Total a Pagar ");
-		btnCalcule = new JButton("Calcular");
-
-		totalToPay = new JTextField();
+		
 		totalToPay.setColumns(10);
-		gl_panelTotal = new GroupLayout(panelTotal);
+		
 		gl_panelTotal.setHorizontalGroup(gl_panelTotal.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelTotal.createSequentialGroup().addContainerGap()
 						.addGroup(gl_panelTotal.createParallelGroup(Alignment.LEADING).addComponent(lblTotal)
