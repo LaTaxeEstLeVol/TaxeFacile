@@ -10,8 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import abstracts.CSLL;
-import csll.CSLLProfitRealStrategy;
+import controller.CSLLProfitRealStrategy;
+import model.CSLL;
 import services.Validator;
 
 import javax.swing.GroupLayout;
@@ -28,32 +28,33 @@ import java.awt.event.ActionEvent;
 public class CSLLCalculator extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel contentPane = null;
 	private String[] typeRegiment = { "Lucro Real", "Lucro Presumido" };
-	private JTextField firstTrimester;
-	private JTextField secondTrimester;
-	private JTextField thirdTrimester;
-	private JTextField totalText;
-	private JTextField fourthTrimestre;
-	private JTextField totalFirstTrimester;
-	private JTextField totalSecondTrimester;
-	private JTextField totalThirdTrimester;
-	private JTextField totalFourthTrimester;
-	private JList<?> listTypeRegiment;
-	private JPanel panel;
-	private JPanel panelReal;
-	private JPanel panelTotal;
-	private JLabel lblTotalAPagar;
-	private JButton btnCalcular;
-	private JLabel lblCsllFirstTrimester;
-	private JLabel lblCsllSecondTrimester;
-	private JLabel lblCsllThirdTrimester;
-	private JLabel lblFirstTrimester;
-	private JLabel lblSecondTrimester;
-	private JLabel lblThirdTrimester;
-	private JLabel lblfourthTrimestre;
-	private JLabel lblQualOTipo;
-	private JLabel lblCsllQuartoTrimestre;
+	private JTextField firstTrimester = null;
+	private JTextField secondTrimester = null;
+	private JTextField thirdTrimester = null;
+	private JTextField totalText = null;
+	private JTextField fourthTrimestre = null;
+	private JTextField totalFirstTrimester = null;
+	private JTextField totalSecondTrimester = null;
+	private JTextField totalThirdTrimester = null;
+	private JTextField totalFourthTrimester = null;
+	private JList<?> listTypeRegiment = null;
+	private JPanel panel = null;
+	private JPanel panelReal = null;
+	private JPanel panelTotal = null;
+	private JLabel lblTotalAPagar = null;
+	private JButton btnCalcular = null;
+	private JLabel lblCsllFirstTrimester = null;
+	private JLabel lblCsllSecondTrimester = null;
+	private JLabel lblCsllThirdTrimester = null;
+	private JLabel lblFirstTrimester = null;
+	private JLabel lblSecondTrimester = null;
+	private JLabel lblThirdTrimester = null;
+	private JLabel lblfourthTrimestre = null;
+	private JLabel lblQualOTipo = null;
+	private JLabel lblCsllQuartoTrimestre = null;
+	private Validator validator = null;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -134,6 +135,8 @@ public class CSLLCalculator extends JFrame {
 		fourthTrimestre.setFont(new Font("Arial", Font.PLAIN, 10));
 		fourthTrimestre.setColumns(10);
 		btnCalcular.setFont(new Font("Arial", Font.PLAIN, 14));
+		
+		validator = new Validator();
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
@@ -200,7 +203,6 @@ public class CSLLCalculator extends JFrame {
 						.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnCalcular)
 						.addContainerGap(27, Short.MAX_VALUE)));
 		panelTotal.setLayout(gl_panelTotal);
-
 		
 		GroupLayout gl_panelReal = new GroupLayout(panelReal);
 		gl_panelReal.setHorizontalGroup(gl_panelReal.createParallelGroup(Alignment.LEADING)
@@ -281,8 +283,6 @@ public class CSLLCalculator extends JFrame {
 				if (listTypeRegiment.getSelectedValue().equals("Lucro Real") || 
 					listTypeRegiment.getSelectedValue().equals("Lucro Presumido")) {
 	
-					Validator validator = new Validator();
-
 					boolean first = validator.validateProfit(firstTrimester.getText(), "Primeiro Trimestre");
 					boolean second = validator.validateProfit(secondTrimester.getText(), "Segundo Trimestre");
 					boolean third = validator.validateProfit(thirdTrimester.getText(), "Terceiro Trimestre");
@@ -304,11 +304,11 @@ public class CSLLCalculator extends JFrame {
 						String thirdValue = String.valueOf(validator.format(csll.calculeThirdTrimester(csll)));
 						String fourthValue = String.valueOf(validator.format(csll.calculeFourthTrimester(csll)));
 
-						totalFirstTrimester.setText("RS " + firstValue);
-						totalSecondTrimester.setText("RS " + secondValue);
-						totalThirdTrimester.setText("RS " + thirdValue);
-						totalFourthTrimester.setText("RS " + fourthValue);
-						totalText.setText("RS " + finalValue + " Reais");
+						totalFirstTrimester.setText("R$ " + firstValue);
+						totalSecondTrimester.setText("R$ " + secondValue);
+						totalThirdTrimester.setText("R$ " + thirdValue);
+						totalFourthTrimester.setText("R$ " + fourthValue);
+						totalText.setText("R$ " + finalValue + " Reais");
 					}
 				} else {
 

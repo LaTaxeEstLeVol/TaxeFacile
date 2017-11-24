@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,9 +11,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import abstracts.COFINS;
-import federalTax.COFINSProfitPresumedStrategy;
-import federalTax.COFINSProfitRealStrategy;
+import controller.COFINSProfitPresumedStrategy;
+import controller.COFINSProfitRealStrategy;
+import model.COFINS;
 import services.Validator;
 
 import javax.swing.GroupLayout;
@@ -26,20 +27,21 @@ import javax.swing.JButton;
 public class COFINSCalculator extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel contentPane = null;
 	private String[] typeRegiment = { "Lucro Real", "Lucro Presumido" };
-	private JList<?> typeRegimentList;
-	private JTextField salesMonthText;
-	private JTextField resalesText;
-	private JTextField totalToPay;
-	private JPanel panelTotal;
-	private JLabel lblsalesMonth;
-	private JLabel lblResales;
-	private GroupLayout gl_panel;
-	private JPanel panel;
-	private JLabel lblTotal;
-	private JButton btnCalcule;
-	private GroupLayout gl_panelTotal;
+	private JList<?> typeRegimentList = null;
+	private JTextField salesMonthText = null;
+	private JTextField resalesText = null;
+	private JTextField totalToPay = null;
+	private JPanel panelTotal = null;
+	private JLabel lblsalesMonth = null;
+	private JLabel lblResales = null;
+	private GroupLayout gl_panel = null;
+	private JPanel panel = null;
+	private JLabel lblTotal = null;
+	private JButton btnCalcule = null;
+	private GroupLayout gl_panelTotal = null;
+	private Validator validator = null;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,9 +67,31 @@ public class COFINSCalculator extends JFrame {
 		setContentPane(contentPane);
 
 		typeRegimentList = new JList(typeRegiment);
-
+		lblsalesMonth = new JLabel("Vendas no mês");
+		lblResales = new JLabel("Compras pra Revendas");
 		panelTotal = new JPanel();
-
+		salesMonthText = new JTextField();
+		resalesText = new JTextField();
+		lblTotal = new JLabel("Total a Pagar ");
+		btnCalcule = new JButton("Calcular");
+		totalToPay = new JTextField();
+		gl_panelTotal = new GroupLayout(panelTotal);
+		
+		typeRegimentList.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblsalesMonth.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblResales.setFont(new Font("Arial", Font.PLAIN, 14));
+		salesMonthText.setFont(new Font("Arial", Font.PLAIN, 14));
+		salesMonthText.setFont(new Font("Arial", Font.PLAIN, 14));
+		resalesText.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblTotal.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnCalcule.setFont(new Font("Arial", Font.PLAIN, 14));
+		totalToPay.setFont(new Font("Arial", Font.PLAIN, 14));
+		
+		salesMonthText.setColumns(10);		
+		resalesText.setColumns(10);
+		
+		validator = new Validator();
+		
 		panel = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
@@ -88,16 +112,8 @@ public class COFINSCalculator extends JFrame {
 								.addComponent(panel, Alignment.LEADING, 0, 0, Short.MAX_VALUE))
 						.addGap(32)));
 
-		lblsalesMonth = new JLabel("Vendas no mês");
-
-		salesMonthText = new JTextField();
-		salesMonthText.setColumns(10);
-
-		lblResales = new JLabel("Compras pra Revendas");
-
-		resalesText = new JTextField();
-		resalesText.setColumns(10);
 		gl_panel = new GroupLayout(panel);
+
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup().addContainerGap()
 						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblsalesMonth)
@@ -117,12 +133,9 @@ public class COFINSCalculator extends JFrame {
 						.addContainerGap(102, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
 
-		lblTotal = new JLabel("Total a Pagar ");
-		btnCalcule = new JButton("Calcular");
-
-		totalToPay = new JTextField();
+		
 		totalToPay.setColumns(10);
-		gl_panelTotal = new GroupLayout(panelTotal);
+		
 		gl_panelTotal.setHorizontalGroup(gl_panelTotal.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelTotal.createSequentialGroup().addContainerGap()
 						.addGroup(gl_panelTotal.createParallelGroup(Alignment.LEADING).addComponent(lblTotal)
@@ -144,6 +157,7 @@ public class COFINSCalculator extends JFrame {
 		resalesText.setVisible(false);
 		totalToPay.setEnabled(false);
 		btnCalcule.setEnabled(false);
+		totalToPay.setEnabled(false);
 
 		typeRegimentList.addListSelectionListener(new ListSelectionListener() {
 
@@ -168,8 +182,6 @@ public class COFINSCalculator extends JFrame {
 
 				if (typeRegimentList.getSelectedValue().equals("Lucro Real")) {
 
-					Validator validator = new Validator();
-
 					boolean sales = validator.validateSalary(salesMonthText.getText());
 					boolean resales = validator.validateSalary(resalesText.getText());
 
@@ -186,8 +198,6 @@ public class COFINSCalculator extends JFrame {
 						totalToPay.setText("RS " + finalValue + " Reais");
 					}
 				} else {
-					
-					Validator validator = new Validator();
 
 					boolean sales = validator.validateSalary(salesMonthText.getText());
 					
@@ -200,7 +210,7 @@ public class COFINSCalculator extends JFrame {
 						
 						String finalValue = String.valueOf(validator.format(cofins.calcule(cofins)));
 						
-						totalToPay.setText("RS " + finalValue + " Reais");
+						totalToPay.setText("R$ " + finalValue + " Reais");
 					}
 				}
 			}
@@ -214,7 +224,7 @@ public class COFINSCalculator extends JFrame {
 			salesMonthText.setEnabled(true);
 			lblResales.setVisible(false);
 			resalesText.setVisible(false);
-			totalToPay.setEnabled(true);
+			totalToPay.setEnabled(false);
 			btnCalcule.setEnabled(true);
 		} else {
 
@@ -222,7 +232,7 @@ public class COFINSCalculator extends JFrame {
 			resalesText.setVisible(true);
 			salesMonthText.setEnabled(true);
 			resalesText.setEnabled(true);
-			totalToPay.setEnabled(true);
+			totalToPay.setEnabled(false);
 			btnCalcule.setEnabled(true);
 		}
 		return state;

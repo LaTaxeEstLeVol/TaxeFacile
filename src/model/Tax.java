@@ -1,9 +1,8 @@
-package abstracts;
+package model;
 
 public abstract class Tax {
 
-	private double aliquot;
-	private String state;
+	private double aliquot = 0.0;
 
 	public double getAliquot() {
 		return aliquot;
@@ -13,13 +12,5 @@ public abstract class Tax {
 		this.aliquot = aliquot;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-	
 	public abstract double calcule(Tax tax);
 }

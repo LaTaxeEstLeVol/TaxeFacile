@@ -9,7 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import fgts.FGTS;
+import controller.FGTS;
+import model.TemplateFGTS;
 import services.Validator;
 
 import javax.swing.GroupLayout;
@@ -22,18 +23,19 @@ import javax.swing.JButton;
 public class FGTSCalculator extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField grossSalaryText;
-	private JLabel lblMonthWorked;
-	private JTextField monthWorkedText;
-	private JLabel lblFGTSAccumulated;
-	private JTextField fgtsAccumulatedText;
-	private JLabel lblDepositedAmount;
-	private JTextField depositedAmountText;
-	private JPanel panel;
-	private JLabel lblGrossSalaryText;
-	private JButton btnCalcule;
-	private JButton btnClear;
+	private JPanel contentPane = null;
+	private JTextField grossSalaryText = null;
+	private JLabel lblMonthWorked = null;
+	private JTextField monthWorkedText = null;
+	private JLabel lblFGTSAccumulated = null;
+	private JTextField fgtsAccumulatedText = null;
+	private JLabel lblDepositedAmount = null;
+	private JTextField depositedAmountText = null;
+	private JPanel panel = null;
+	private JLabel lblGrossSalaryText = null;
+	private JButton btnCalcule = null;
+	private JButton btnClear = null;
+	private Validator validator = null;
 
 	public static void main(String[] args) {
 		
@@ -104,6 +106,8 @@ public class FGTSCalculator extends JFrame {
 		btnCalcule.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnClear.setFont(new Font("Arial", Font.PLAIN, 14));
 		
+		validator = new Validator();
+		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -164,15 +168,13 @@ public class FGTSCalculator extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				Validator validator = new Validator();
-				
+								
 				boolean salary = validator.validateSalary(grossSalaryText.getText());
 				boolean months = validator.validateMonths(monthWorkedText.getText());
 				
 				if((salary && months) == true) {
 					
-					FGTS fgts = new FGTS();
+					TemplateFGTS fgts = new FGTS();
 					
 					fgts.setGrossSalary(Double.parseDouble(grossSalaryText.getText()));
 					fgts.setMonthsWorked(Integer.parseInt(monthWorkedText.getText()));
@@ -180,8 +182,8 @@ public class FGTSCalculator extends JFrame {
 					String fgtsAccumulated = String.valueOf(fgts.calculeDepositedAmount(fgts));
 					String depositedAmount = String.valueOf(fgts.calcule(fgts));
 					
-					depositedAmountText.setText(fgtsAccumulated);
-					fgtsAccumulatedText.setText(depositedAmount);
+					depositedAmountText.setText("R$ " + fgtsAccumulated + " Reais");
+					fgtsAccumulatedText.setText("R$ " + depositedAmount + " Reais");
 				}
 			}
 		});

@@ -1,6 +1,6 @@
-package federalTax;
+package controller;
 
-import abstracts.COFINS;
+import model.COFINS;
 
 public class COFINSProfitPresumedStrategy extends COFINS {
 

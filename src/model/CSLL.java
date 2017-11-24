@@ -1,7 +1,7 @@
-package abstracts;
+package model;
 
-import csll.CSLLProfitRealStrategy;
-import csll.CSLLProfixPresumedStrategy;
+import controller.CSLLProfitRealStrategy;
+import controller.CSLLProfixPresumedStrategy;
 
 public abstract class CSLL extends Tax {
 
