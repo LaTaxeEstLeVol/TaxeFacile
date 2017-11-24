@@ -8,15 +8,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import abstracts.PIS;
+import pis.PISProfitPresumedStrategy;
 import pis.PISProfitRealStrategy;
+import services.Validator;
 
-import javax.swing.JList;
 import javax.swing.JComboBox;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
@@ -27,13 +26,13 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class PISCalculator extends JFrame implements ActionListener { //
+public class PISCalculator extends JFrame { 
 
 	private JPanel contentPane;
-	String[] list = new String[] {"Escolha...","Lucro Real", "Lucro Presumido"};
-	private JTextField tFVendas;
-	private JTextField tFValorTotal;
-	private JTextField tFRevenda;
+	String[] list = new String[] { "Escolha...", "Lucro Real", "Lucro Presumido" };
+	private JTextField tFSales;
+	private JTextField tFTotal;
+	private JTextField tFResales;
 	private JLabel lblVendaMes;
 	private JLabel lblValorTotal;
 	private JLabel lbRevenda;
@@ -62,24 +61,26 @@ public class PISCalculator extends JFrame implements ActionListener { //
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JComboBox<String> comboBox = new JComboBox(list);
-	//	comboBox.setSelectedItem(list);
-		
+		// comboBox.setSelectedItem(list);
+
 		comboBox.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JComboBox combo = (JComboBox) e.getSource();
-				
+
 				Object selected = combo.getSelectedItem();
-			//	PIS pisProfitReal = new PISProfitRealStrategy();
-				if(selected.equals("Escolha...")) {
+				if (selected.equals("Escolha...")) {
 					opcaoEscolha();
-				} else if(selected.toString().equals("Lucro Real")) {
+					cleanText();
+				} else if (selected.toString().equals("Lucro Real")) {
 					optionReal();
-				} else if(selected.toString().equals("Lucro Presumido")) {
+					cleanText();
+				} else if (selected.toString().equals("Lucro Presumido")) {
 					optionPresumed();
+					cleanText();
 				} else {
 					// do nothing
 				}
@@ -87,35 +88,35 @@ public class PISCalculator extends JFrame implements ActionListener { //
 		});
 		comboBox.setBounds(48, 37, 162, 24);
 		contentPane.add(comboBox);
-		
-		tFVendas = new JTextField();
-		tFVendas.setFont(new Font("Dialog", Font.PLAIN, 12));
-		tFVendas.setBounds(258, 86, 114, 24);
-		contentPane.add(tFVendas);
-		tFVendas.setColumns(10);
-		
-		tFValorTotal = new JTextField();
-		tFValorTotal.setBounds(258, 189, 114, 21);
-		contentPane.add(tFValorTotal);
-		tFValorTotal.setColumns(10);
-		
+
+		tFSales = new JTextField();
+		tFSales.setFont(new Font("Dialog", Font.PLAIN, 12));
+		tFSales.setBounds(258, 86, 114, 24);
+		contentPane.add(tFSales);
+		tFSales.setColumns(10);
+
+		tFTotal = new JTextField();
+		tFTotal.setBounds(258, 189, 114, 21);
+		contentPane.add(tFTotal);
+		tFTotal.setColumns(10);
+
 		lblVendaMes = new JLabel("Vendas no mês");
 		lblVendaMes.setBounds(58, 90, 157, 15);
 		contentPane.add(lblVendaMes);
-		
+
 		lblValorTotal = new JLabel("Valor a pagar:");
 		lblValorTotal.setBounds(122, 192, 114, 15);
 		contentPane.add(lblValorTotal);
-		
+
 		lbRevenda = new JLabel("Compras para revenda");
 		lbRevenda.setBounds(58, 136, 172, 15);
 		contentPane.add(lbRevenda);
-		
-		tFRevenda = new JTextField();
-		tFRevenda.setBounds(258, 129, 114, 24);
-		contentPane.add(tFRevenda);
-		tFRevenda.setColumns(10);
-		
+
+		tFResales = new JTextField();
+		tFResales.setBounds(258, 129, 114, 24);
+		contentPane.add(tFResales);
+		tFResales.setColumns(10);
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,75 +125,105 @@ public class PISCalculator extends JFrame implements ActionListener { //
 		});
 		btnVoltar.setBounds(12, 236, 87, 25);
 		contentPane.add(btnVoltar);
-		
+
 		JButton btnCalcular = new JButton("Calcular");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
+
+				Object selected = comboBox.getSelectedItem();
+				if (selected.equals("Escolha...")) {
+					// do nothing
+				} else if (selected.toString().equals("Lucro Real")) {
+					Validator validator = new Validator();
+
+					boolean sales = validator.validateSalary(tFSales.getText());
+					boolean resales = validator.validateSalary(tFResales.getText());
+
+					if ((sales && resales) == true) {
+
+						PIS pis = new PISProfitRealStrategy();
+						
+						pis.setTypeRegiment("Lucro Real");
+						pis.setMonthlyIncome(Double.parseDouble(tFSales.getText()));
+						pis.setAccreditedPurchase(Double.parseDouble(tFResales.getText()));
+
+						String finalValue = String.valueOf(validator.format(pis.calcule(pis)));
+
+						tFTotal.setText("RS " + finalValue + " Reais");
+					}
+
+				} else if (selected.toString().equals("Lucro Presumido")) {
+					Validator validator = new Validator();
+
+					boolean sales = validator.validateSalary(tFSales.getText());
+
+					if (sales) {
+
+						PIS pis = new PISProfitPresumedStrategy();
+						
+						pis.setTypeRegiment("Lucro Presumido");
+						pis.setMonthlyIncome(Double.parseDouble(tFSales.getText()));
+
+						String finalValue = String.valueOf(validator.format(pis.calcule(pis)));
+
+						tFTotal.setText("RS " + finalValue + " Reais");
+					}
+
+				} else {
+					// do nothing
+				}
+
 			}
 		});
+		getContentPane().add(comboBox);
+		getContentPane().add(tFTotal);
+		
 		btnCalcular.setBounds(345, 236, 91, 25);
 		contentPane.add(btnCalcular);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-/*		PIS pisProfitReal = new PISProfitRealStrategy();
-		if(selectedProfit.equals("Escolha...")) {
-			
-		} else if(selectedProfit.equals("Lucro Real")) {
-			JOptionPane.showMessageDialog(null, "REAaaaaaL");
-			//pisProfitReal..PISProfitRealStrategy();
-		} else if (selectedProfit == "Lucro Presumido") {
-			//pis.PISProfitPresumedStrategy();
-			JOptionPane.showMessageDialog(null, "PRESUMIDO");
-		} else {
-			JOptionPane.showMessageDialog(null, "Opção indisponível");
-		}*/
-		
-	}
-	
 	private void index() {
-		Index index  = new Index();
+		Index index = new Index();
 		index.setVisible(true);
-		dispose();	
+		dispose();
 	}
-	
+
 	private void opcaoEscolha() {
-		tFVendas.setEnabled(false);
-		tFRevenda.setEnabled(false);
-		tFValorTotal.setEnabled(false);
+		tFSales.setEnabled(false);
+		tFResales.setEnabled(false);
+		tFTotal.setEnabled(false);
 		lblVendaMes.setVisible(true);
 		lblValorTotal.setVisible(true);
 		lbRevenda.setVisible(true);
 	}
 
-	private void optionReal() { //boolean optionReal(boolean state) {
-		tFVendas.setEnabled(true);
-		tFRevenda.setEnabled(true);
-		tFValorTotal.setEnabled(true);
+	private void optionReal() { 
+		tFSales.setVisible(true);
+		tFSales.setEnabled(true);
+		tFResales.setVisible(true);
+		tFResales.setEnabled(true);
+		tFTotal.setVisible(true);
+		tFTotal.setEnabled(false);
 		lblVendaMes.setVisible(true);
 		lblValorTotal.setVisible(true);
 		lbRevenda.setVisible(true);
-		
-		//return state
 	}
 
 	private void optionPresumed() {
-		tFVendas.setEnabled(true);
-		tFRevenda.setEnabled(false);
-		tFRevenda.setVisible(false);
-		tFValorTotal.setEnabled(true);
+		tFSales.setVisible(true);
+		tFSales.setEnabled(true);
+		tFResales.setVisible(false);
+		tFResales.setEnabled(false);
+		tFTotal.setVisible(true);
+		tFTotal.setEnabled(false);
 		lblVendaMes.setVisible(true);
 		lblValorTotal.setVisible(true);
 		lbRevenda.setVisible(false);
 	}
-	
+
 	private void cleanText() {
-		tFVendas.setText("");
-		tFRevenda.setText("");
-		tFValorTotal.setText("");
+		tFSales.setText("");
+		tFResales.setText("");
+		tFTotal.setText("");
 	}
 }
