@@ -1,25 +1,19 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenu;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Index extends JFrame {
-	
-	//private Imposto imposto;
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -33,10 +27,8 @@ public class Index extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Index() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -48,12 +40,17 @@ public class Index extends JFrame {
 		btnIss.setBounds(37, 102, 117, 25);
 		contentPane.add(btnIss);
 		
+		JButton btnIcms = new JButton("ICMS");
+		btnIcms.setBounds(42,182,142,25);
+		contentPane.add(btnIcms);
+		
 		JButton btnIpi = new JButton("COFINS");
 		btnIpi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cofins();
 			}
 		});
+		
 		btnIpi.setBounds(181, 102, 117, 25);
 		contentPane.add(btnIpi);
 		
@@ -79,7 +76,13 @@ public class Index extends JFrame {
 		btnCsll.setBounds(247, 139, 117, 25);
 		contentPane.add(btnCsll);
 		
-		//implementar fachada
+		btnIcms.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				icms();
+			}
+		});
 	}
 	
 	private void cofins() {
@@ -99,7 +102,10 @@ public class Index extends JFrame {
 		csllFrame.setVisible(true);
 		dispose();	
 	}
-	//Receita entrar no banco? 
-	//this.imposto = new Imposto();
 	
+	private void icms() {
+		ICMSCalculator icmsCalculator = new ICMSCalculator();
+		icmsCalculator.setVisible(true);
+		dispose();
+	}
 }
