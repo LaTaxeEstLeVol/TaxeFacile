@@ -29,6 +29,8 @@ public class Index extends JFrame {
 
 	public Index() {
 		
+
+		super("Calculadora de Impostos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -55,6 +57,11 @@ public class Index extends JFrame {
 		contentPane.add(btnIpi);
 		
 		JButton btnPis = new JButton("PIS");
+		btnPis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pis();
+			}
+		});
 		btnPis.setBounds(319, 102, 117, 25);
 		contentPane.add(btnPis);
 		
@@ -106,6 +113,12 @@ public class Index extends JFrame {
 	private void icms() {
 		ICMSCalculator icmsCalculator = new ICMSCalculator();
 		icmsCalculator.setVisible(true);
+		dispose();
+	}
+	
+	private void pis() {
+		PISCalculator pisFrame = new PISCalculator();
+		pisFrame.setVisible(true);
 		dispose();
 	}
 }
