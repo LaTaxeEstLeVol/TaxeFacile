@@ -1,7 +1,8 @@
 package model;
 
-import controller.IRPJProfixPresumedStrategy;
-import controller.IRPJProfixRealStrategy;
+import controller.IRPJProfitRealStrategy;
+import controller.IRPJProfitPresumedStrategy;
+
 
 public abstract class IRPJ extends Tax {
 
@@ -59,7 +60,7 @@ public abstract class IRPJ extends Tax {
 		if (typeRegiment(irpj) == true) {
 			return new IRPJProfitRealStrategy().calculeIRPJ(irpj);
 		} else {
-			return new IRPJProfixPresumedStrategy().calculeIRPJ(irpj);
+			return new IRPJProfitPresumedStrategy().calculeIRPJ(irpj);
 		}
 	}
 
@@ -76,5 +77,5 @@ public abstract class IRPJ extends Tax {
 	public abstract double calculeSecondTrimester(IRPJ irpj);
 	public abstract double calculeThirdTrimester(IRPJ irpj);
 	public abstract double calculeFourthTrimester(IRPJ irpj);
-	public abstract double calculeCSLL(IRPJ irpj);
+	public abstract double calculeIRPJ(IRPJ irpj);
 }
