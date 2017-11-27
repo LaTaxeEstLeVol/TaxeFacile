@@ -4,7 +4,7 @@ import model.IRPJ;
 
 public class IRPJProfitPresumedStrategy extends IRPJ{
 
-	double additionalTax = 15.0/100.0;
+	double additionalTax = 10.0/100.0;
 	
 	@Override
 	public double calculeIRPJ(IRPJ irpj) {
