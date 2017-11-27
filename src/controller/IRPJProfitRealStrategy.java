@@ -2,13 +2,13 @@ package controller;
 
 import model.IRPJ;
 
-public class IRPJProfixPresumedStrategy extends IRPJ{
-
+public class IRPJProfitRealStrategy extends IRPJ {
+	
 	@Override
 	public double calculeIRPJ(IRPJ irpj) {
 		
-		double aliquot = 32.0/100.0;
-		double additionalTax = 15.0/100.0;
+		double aliquot = 15.0/100.0;
+		double additionalTax = 10.0/100.0;
 		irpj.setAliquot(aliquot);
 		
 		double result = 0;
