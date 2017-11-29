@@ -12,3 +12,7 @@ Impostos calculados:
  * IRPJ
  
 veja como utilizar a biblioteca [aqui.](https://github.com/LaTaxeEstLeVol/TaxeFacile/wiki/Como-usar)
+
+## Releases
+
+Acesse a primeira versão da biblioteca em: [TaxeFacile v1.0](https://github.com/LaTaxeEstLeVol/TaxeFacile/releases)
