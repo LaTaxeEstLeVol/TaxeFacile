@@ -14,11 +14,11 @@ Obrigado por contribuir! :tada::+1: Sua ajuda será recebida com muita gratidão
 
 ## Adicionando e/ou modificando alguma funcionalidade
 
-* Primeiro verifique que não existe nenhuma [_Issue_](https://github.com/https://github.com/LaTaxeEstLeVol/TaxeFacile/issues) a respeito dessa modificação e/ou adição.
+* Primeiro verifique que não existe nenhuma [_Issue_](https://github.com/LaTaxeEstLeVol/TaxeFacile/issues) a respeito dessa modificação e/ou adição.
 
 * Caso não exista, crie uma [Nova _Issue_](https://github.com/LaTaxeEstLeVol/TaxeFacile/issues/new). Dê um título significativo a ela, coloque uma descrição e pelo menos uma _label_.
 
-* As mudanças devem ser submetidas através de [_Pull Requests_](https://github.com/LaTaxeEstLeVol/TaxeFacile/issues/new/compare).
+* As mudanças devem ser submetidas através de [_Pull Requests_](https://github.com/LaTaxeEstLeVol/TaxeFacile/compare).
 
 
 # Padrão de _Commit_
