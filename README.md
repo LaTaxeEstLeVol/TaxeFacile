@@ -15,7 +15,7 @@ veja como utilizar a biblioteca [aqui.](https://github.com/LaTaxeEstLeVol/TaxeFa
 ## Contribuição
 
 A biblioteca TaxeFacile visa calcular impostos brasileiros, entretanto apenas impostos envolvendo MEIs (microempreendedor individual) foram implementados.
-Para contribuir com o projeto, por favor, leia o [CONTRIBUTING](https://github.com/LaTaxeEstLeVol/TaxeFacile/blob/documentos/.github/CONTRIBUTING.md). Em seguida, você pode dar uma olhada no modelo inicial dos impostos, seguindo a versão descrita [aqui.](https://raw.githubusercontent.com/wiki/LaTaxeEstLeVol/TaxeFacile/imgs/niveisImpostos.jpg)
+Para contribuir com o projeto, por favor, leia o [CONTRIBUTING](https://github.com/LaTaxeEstLeVol/TaxeFacile/blob/master/.github/CONTRIBUTING.md). Em seguida, você pode dar uma olhada no modelo inicial dos impostos, seguindo a versão descrita [aqui.](https://raw.githubusercontent.com/wiki/LaTaxeEstLeVol/TaxeFacile/imgs/niveisImpostos.jpg)
 
 ## Releases
 
